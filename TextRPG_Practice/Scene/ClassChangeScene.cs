@@ -52,6 +52,11 @@ namespace TextRPG_Practice.Scene
                         Console.WriteLine("레벨이 부족합니다.");
                         Thread.Sleep(1000);
                     }
+                    else if(Data.player.characterClass != "Beginner")
+                    {
+                        Console.WriteLine("이미 전직했습니다.");
+                        Thread.Sleep(1000);
+                    }
                     else
                     {
                         Data.player.ClassChangeMagician();
