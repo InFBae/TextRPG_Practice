@@ -37,9 +37,19 @@ namespace TextRPG_Practice.Player.Skill
             Console.WriteLine("플레이어가 회복을 시도합니다.");
             Thread.Sleep(1000);
             Heal(3);
-            Data.player.MP -= 3;
-            Console.WriteLine($"플레이어의 체력이 {Data.player.HP}가 되었습니다.");
-            Thread.Sleep(1000);
+            if(Data.player.MP >= 3)
+            {
+                Data.player.MP -= 3;
+
+                Console.WriteLine($"플레이어의 체력이 {Data.player.HP}가 되었습니다.");
+                Thread.Sleep(1000);
+            }
+            else
+            {
+                Console.WriteLine($"MP가 부족하여 스킬시전에 실패했습니다.");
+                Thread.Sleep(1000);
+            }
+            
         }
 
         

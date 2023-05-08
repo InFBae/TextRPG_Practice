@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace TextRPG_Practice.Scene
 {
-    internal class DungeonScene : Scene
+    internal class DungeonBossScene : Scene
     {
-        private int searchGauge = 0;
-        public DungeonScene(Game game) : base(game)
+        public DungeonBossScene(Game game) : base(game)
         {
         }
 
@@ -18,10 +17,10 @@ namespace TextRPG_Practice.Scene
             StringBuilder sb = new StringBuilder();
             this.game.PrintPlayer();
 
-            sb.AppendLine("이곳은 던전입니다.");
+            sb.AppendLine("이곳은 던전보스방입니다.");
             sb.AppendLine("-----------------------");
-            sb.AppendLine("1. 진행");
-            sb.AppendLine("2. 마을로 귀환");
+            sb.AppendLine("1. 보스와 전투");
+            sb.AppendLine("2. 던전으로 후퇴");
 
             sb.Append("\n입력 : ");
 
@@ -34,24 +33,14 @@ namespace TextRPG_Practice.Scene
 
             switch (index)
             {
-                case 1:
-                    searchGauge++;
-                    if(searchGauge >= 3)
-                    {
-                        searchGauge = 0;
-                        Console.WriteLine("보스 방으로 이동합니다.");
-                        Thread.Sleep(1000);
-                        game.MoveMap(new StartVillageScene(this.game));
-                        break;
-                    }
-                    
-                    Data.monsters.Add(new Monster. Slime());                    
+                case 1:                  
+                    Data.monsters.Add(new Monster.SlimeKing());
                     game.BattleStart();
                     break;
                 case 2:
-                    Console.WriteLine("마을로 이동합니다.");
+                    Console.WriteLine("던전으로 이동합니다.");
                     Thread.Sleep(1000);
-                    game.MoveMap(new StartVillageScene(this.game));
+                    game.MoveMap(new DungeonScene(this.game));
                     break;
                 default:
                     Console.WriteLine("잘못 입력 하셨습니다.");

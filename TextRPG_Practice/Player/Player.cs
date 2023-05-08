@@ -67,12 +67,18 @@ namespace TextRPG_Practice.Player
         {
             level += 1;
             maxHP += 2;
-            HP = maxHP;
-            maxMP += 2;
-            MP = maxMP;
+            maxMP += 2;            
             AP += 1;
             EXP = 0;
             maxEXP += (level * 2);
+
+            FullRecovery();
+        }
+
+        public void FullRecovery()
+        {
+            HP = maxHP;
+            MP = maxMP;
         }
 
         public void ClassChangeWarrior()
@@ -80,6 +86,7 @@ namespace TextRPG_Practice.Player
             characterClass = "전사";
             maxHP += 5;
             AP += 3;
+            skills = new WarriorSkills().SkillList;
         }
         public void ClassChangeMagician()
         {
