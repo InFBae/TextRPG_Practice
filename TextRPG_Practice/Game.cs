@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TextRPG_Practice.Player;
 using TextRPG_Practice.Scene;
 
 namespace TextRPG_Practice
@@ -73,6 +74,9 @@ namespace TextRPG_Practice
 
         internal void GameStart()
         {
+            Console.Write("플레이어의 이름을 입력해주세요 : ");
+            string input = Console.ReadLine();
+            Data.player.name = input;
             scene = new Scene.StartVillageScene(this);
         }
 
@@ -104,7 +108,7 @@ namespace TextRPG_Practice
 
         internal void BattleStart()
         {
-            BattleScene battleScene = new BattleScene(this);    
+            BattleScene battleScene = new BattleScene(this, scene);    
             scene = battleScene;
             battleScene.StartBattle(Data.monsters[0]);
         }

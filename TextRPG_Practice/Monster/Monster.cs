@@ -32,9 +32,9 @@ namespace TextRPG_Practice.Monster
 
             if (HP <= 0)
             {
+                HP = 0;
                 Console.WriteLine($"{name}은/는 쓰려졌다!");
                 Thread.Sleep(1000);
-
             }
         }
 

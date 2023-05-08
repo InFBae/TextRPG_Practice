@@ -34,8 +34,6 @@ namespace TextRPG_Practice.Scene
             switch (index)
             {
                 case 1:
-                    Console.WriteLine("허수아비와 전투 시작.");
-                    Thread.Sleep(1000);
                     Data.monsters.Add(new Monster.Scarecrow());
                     game.BattleStart();
                     break;

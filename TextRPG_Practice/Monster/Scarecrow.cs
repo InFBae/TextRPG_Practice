@@ -16,7 +16,8 @@ namespace TextRPG_Practice.Monster
             maxMP = 0;
             MP = maxMP;
             AP = 0;
-            level = 1;
+            DP = 0;
+            level = 1;           
         }
     }
 }
