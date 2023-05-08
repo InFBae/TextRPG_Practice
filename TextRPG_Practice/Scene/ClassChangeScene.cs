@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace TextRPG_Practice.Scene
 {
-    internal class DungeonScene : Scene
+    internal class ClassChangeScene : Scene
     {
-        private int searchGauge = 0;
-        public DungeonScene(Game game) : base(game)
+        public ClassChangeScene(Game game) : base(game)
         {
         }
 
@@ -18,10 +17,12 @@ namespace TextRPG_Practice.Scene
             StringBuilder sb = new StringBuilder();
             this.game.PrintPlayer();
 
-            sb.AppendLine("이곳은 던전입니다.");
+            sb.AppendLine("이곳은 전직소입니다.");
             sb.AppendLine("-----------------------");
-            sb.AppendLine("1. 진행");
-            sb.AppendLine("2. 마을로 귀환");
+            sb.AppendLine("1. 전사로 전직");
+            sb.AppendLine("2. 마법사로 전직");
+            sb.AppendLine("3. 마을로 이동");
+
 
             sb.Append("\n입력 : ");
 
@@ -35,20 +36,28 @@ namespace TextRPG_Practice.Scene
             switch (index)
             {
                 case 1:
-                    searchGauge++;
-                    if(searchGauge > 3)
+                    if(Data.player.level < 3)
                     {
-                        searchGauge = 0;
-                        Console.WriteLine("보스 방으로 이동합니다.");
+                        Console.WriteLine("레벨이 부족합니다.");
                         Thread.Sleep(1000);
-                        game.MoveMap(new DungeonBossScene(this.game));
-                        break;
                     }
-                    
-                    Data.monsters.Add(new Monster. Slime());                    
-                    game.BattleStart();
+                    else
+                    {
+                        Data.player.ClassChangeWarrior();
+                    }
                     break;
                 case 2:
+                    if (Data.player.level < 3)
+                    {
+                        Console.WriteLine("레벨이 부족합니다.");
+                        Thread.Sleep(1000);
+                    }
+                    else
+                    {
+                        Data.player.ClassChangeMagician();
+                    }
+                    break;
+                case 3:
                     Console.WriteLine("마을로 이동합니다.");
                     Thread.Sleep(1000);
                     game.MoveMap(new StartVillageScene(this.game));

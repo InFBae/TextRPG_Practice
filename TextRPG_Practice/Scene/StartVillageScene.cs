@@ -17,8 +17,9 @@ namespace TextRPG_Practice.Scene
             sb.AppendLine("-----------------------");
             sb.AppendLine("1. 수련장으로 이동");
             sb.AppendLine("2. 던전으로 이동");
-            sb.AppendLine("3. 회복");
-            sb.AppendLine("4. 게임 종료");
+            sb.AppendLine("3. 전직소로 이동");
+            sb.AppendLine("4. 회복");
+            sb.AppendLine("5. 게임 종료");
 
             sb.Append("\n입력 : ");
 
@@ -42,11 +43,16 @@ namespace TextRPG_Practice.Scene
                     game.MoveMap(new DungeonScene(this.game));
                     break;
                 case 3:
+                    Console.WriteLine("전직소로 이동합니다.");
+                    Thread.Sleep(1000);
+                    game.MoveMap(new ClassChangeScene(this.game));
+                    break;
+                case 4:
                     Console.WriteLine("HP, MP를 모두 회복합니다.");
                     Thread.Sleep(1000);
                     Data.player.FullRecovery();
                     break;
-                case 4:
+                case 5:
                     game.GameOver("게임을 종료했습니다.");
                     break;
                 default:
